@@ -59,7 +59,7 @@ const client = new Client({
     }
 });
 
-console.log(`Lokasi Chromium ditemukan di: ${chromePath}`);
+// console.log(`Lokasi Chromium ditemukan di: ${chromePath}`);
 
 // Inisialisasi bot dengan penyimpanan sesi LOKAL (di dalam Replit)
 // const client = new Client({
