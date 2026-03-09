@@ -49,7 +49,16 @@ app.listen(port, () => {
 });
 
 // Meminta Node.js mencari lokasi asli Chromium di sistem Replit
-const chromePath = execSync('which chromium').toString().trim();
+let chromePath;
+try {
+  chromePath = execSync('which chromium').toString().trim();
+} catch (e) {
+  try {
+    chromePath = execSync('which google-chrome').toString().trim();
+  } catch (e2) {
+    chromePath = null; // Biarkan Puppeteer cari sendiri
+  }
+}
 console.log(`Lokasi Chromium ditemukan di: ${chromePath}`);
 
 // Inisialisasi bot dengan penyimpanan sesi LOKAL (di dalam Replit)
