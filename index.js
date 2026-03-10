@@ -9,6 +9,7 @@ const path = require('path'); // Library baru untuk mengatur jalur file
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+
 function bersihkanGembok(direktori) {
     if (!fs.existsSync(direktori)) return;
 
