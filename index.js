@@ -83,8 +83,8 @@ const client = new Client({
             '--disable-dev-shm-usage',
             '--disable-gpu'
         ],
-        // Heroku Buildpack biasanya meletakkan Chrome di path ini, atau gunakan env
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome-stable'
+        // Heroku Buildpack menggunakan environment variable ini
+        executablePath: process.env.GOOGLE_CHROME_BIN || process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome-stable'
     }
 });
 
