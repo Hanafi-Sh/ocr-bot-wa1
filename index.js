@@ -118,6 +118,17 @@ client.on('ready', () => {
     console.log('Bot sudah siap dan terhubung!');
 });
 
+// Tambahkan deteksi jika autentikasi gagal
+client.on('auth_failure', (msg) => {
+    console.error('⚠️ Autentikasi gagal! Sesi mungkin kedaluwarsa:', msg);
+});
+
+// Tambahkan deteksi jika bot terputus dari WhatsApp
+client.on('disconnected', (reason) => {
+    console.log('❌ Bot terputus dari WhatsApp! Alasan:', reason);
+    // Jika terputus karena logout, kita bisa mencoba untuk menghancurkan auth lama
+});
+
 let isAutoReadEnabled = true;
 let isOcrEnabled = true; // Default kita buat menyala (true), atau ubah ke false jika ingin default mati
 let isAutoSummaryEnabled = true;
@@ -610,7 +621,7 @@ else if (msg.body) {
 
                 let teksSementara = '';
                 if (pemikiranAI) {
-                    teksSementara += `*Thinking...*\n*${pemikiranAI}*\n\n`;
+                    teksSementara += `*Thinking...*\n<think>${pemikiranAI}</think>\n\n`;
                 }
                 if (balasanAI) {
                     teksSementara += `*Typing...*\n${balasanAI.replace(/\[RESET_KONTEKS\]|\[Dikirim oleh:.*?\]/gi, '')}`;
